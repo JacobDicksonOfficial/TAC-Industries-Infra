@@ -1,5 +1,3 @@
-# TAC-Industries-Infra
-
 <p align="center">
   <img src="diagrams/tacindustries.gif" alt="TACNet Infrastructure Banner">
 </p>
