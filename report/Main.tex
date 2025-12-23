@@ -1,0 +1,229 @@
+%-------------------------------------------------------------------------------
+% TEMPLATE FOR ITU HWs and Assignments
+% (c) Javad Ibrahimli, 2023
+
+% This is a template for a HWs document, created by JAVAD IBRAHIMLI.
+% All rights are reserved. 
+%------------------------------------------------------------------------------- 
+
+
+% ------------------ DOCUMENT SETUP ------------------ 
+% The document class defines the document type (report) and sets the font size (12pt)
+\documentclass[12pt]{report}
+\author{Javad Ibrahimli}
+
+
+% Inputs the Document Packages
+\input{_Packages}
+
+% Controls how many subsections the document can take
+%  and how many of those will get put into the contents pages.
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+
+% Line Spacing
+\setstretch{1.5}
+
+
+% Places a dot after Chapter/Section/Subsection number in Table of Contents
+\renewcommand{\cftchapaftersnum}{.}
+\renewcommand{\cftsecaftersnum}{.}
+\renewcommand{\cftsubsecaftersnum}{.}
+
+%  Customize Dot spacing in Table of Contents/List of Figures/Tables
+\renewcommand{\cftdotsep}{0.3}
+
+
+% Line Break Properties
+\tolerance=1
+\emergencystretch=\maxdimen
+\hyphenpenalty=10000
+\hbadness=10000
+
+
+% Formatting Table of Contents/Lists titles
+\renewcommand{\contentsname}{\bfseries\LARGE{CONTENTS}}
+\renewcommand{\listfigurename}{\bfseries\LARGE{LIST OF FIGURES}}
+
+% Signature Line for the declaration
+\newbox\namebox
+\newdimen\signboxdim
+
+\def\signature#1{%
+    \setbox\namebox=\hbox{#1}
+    \signboxdim=\dimexpr(\wd\namebox+3cm)
+    \parbox[t]{\signboxdim}{%
+        \centering
+            \hrulefill\\    % for a line
+            #1
+        \par}%
+    }
+
+% Title Formatting customization
+\titleformat{\chapter}{\normalfont\bfseries\LARGE}{\thechapter.}{1em}{\MakeUppercase}
+
+\titleformat{\section}{\normalfont\bfseries\large}{\thesection.}{1em}{\MakeUppercase}
+\titlespacing*{\section} {0pt} {0pt} {15pt} % left, before, after
+
+\titleformat{\subsection}{\normalfont\bfseries\large}{\thesubsection.}{1em}{}
+\titlespacing*{\subsection} {0pt} {10pt} {10pt}
+
+\titleformat{\subsubsection}{\normalfont\bfseries\large}{\thesubsubsection.}{1em}{}
+\titlespacing*{\subsubsection} {0pt} {10pt} {10pt}
+
+
+% HEADER AND FOOTER
+\pagestyle{fancy}  % Set Page Style (Header and Footer Style)
+\fancyhf{}  % Clears the header and footer (from the default info)
+
+% Header
+\renewcommand{\headrulewidth}{0pt}  % Removes the default Horizontal Line in Header
+% Optional Headers
+%\fancyhead[L]{}
+%\fancyhead[R]{2022/2023}
+
+% Footer
+\fancyfoot[C]{\thepage} % Page Number
+
+% Change figure numbering per section
+\numberwithin{figure}{chapter}
+
+%Acronym entries
+\makeglossaries
+\newacronym{US}{US}{Ultrasound}
+
+
+
+%  -------------------------------------------------
+%  --------- The document starts from here --------- 
+%  -------------------------------------------------
+
+\begin{document}
+
+
+% ------------------  TITLE PAGE -------------------
+% ------------------  TITLE PAGE -------------------
+\begin{titlepage}
+\thispagestyle{empty}
+
+% Coordinate-based image placement (absolute on the page)
+% x,y are from the TOP-LEFT corner of the page
+
+\begin{center}
+    \vspace{1cm}
+    {\relscale{1.4}\textbf{TAC Industries - A Case Management Platform\\}}
+    \vspace{0.3cm}
+    {\relscale{1.20}\textbf{Designing a Zero Trust Architecture\\}}
+    \vspace{1.8cm}
+    
+
+{\begin{singlespace}BSc’s in (Computer Forensics \& Security)\\\end{singlespace}}
+    {\begin{singlespace}Course SE602\\\end{singlespace}}
+    \vspace{0.9cm}
+
+    {\relscale{1.00}{A PROJECT REPORT BY}}\\
+    %\vspace{0.1cm}
+    \& Support Of\\
+    \vspace{0.9cm}
+    Jabez Jacob Dickson\\ Supervisor: Jerry Horgan\\
+    \vspace{1.5cm}
+    \begin{center}
+  \includegraphics[width=6cm]{Images/picture1.png}
+\end{center}
+    
+\end{center}
+
+{\raggedleft\vfill{\begin{singlespace}
+     Department of Science and Computing \\
+\end{singlespace}
+ South East Technological University | Waterford\\
+ \begin{singlespace}
+% ...
+\end{singlespace}}
+
+% ----------------------  DECLARATION -----------------------
+\newpage
+\chapter*{Declaration} % the Asterix (*) indicates that this section will be added to the table of contents but no number will be present beside it.
+\addcontentsline{toc}{chapter}{Declaration}
+I, Jabez Jacob Dickson confirm that the work presented in this report is my own. Where information has been derived from other sources, I confirm that this has been indicated in the report.
+\vspace*{3cm}
+
+\noindent\signature{Jabez Jacob Dickson}
+\newpage
+% ----------------------  ABSTRACT -----------------------
+\newpage
+\chapter*{Abstract} % the Asterix (*) indicates that this section will be added to the table of contents but no number will be present beside it.
+\addcontentsline{toc}{chapter}{Abstract}
+\input{Abstract}
+
+% -----------------  ACKNOWLEDGEMENTS  -------------------
+\newpage
+\chapter*{Acknowledgements}
+\addcontentsline{toc}{chapter}{Acknowledgement}
+\input{Acknowledgments}
+\newpage
+% -----------------  ACRONYMS  -------------------
+\newpage
+%\chapter*{Acronyms}
+\addcontentsline{toc}{chapter}{Acronyms}
+\printglossary[type=\acronymtype,nonumberlist,nopostdot]
+\newpage
+% ------------------  TABLE OF CONTENTS --------------------
+\tableofcontents 
+
+
+
+% -------------------  LIST OF FIGURES --------------------
+\newpage 
+%{\let\oldnumberline\numberline       % Uncomment to add the word 'Figure' to figure number in List of Figures
+%\renewcommand{\numberline}{\figurename~\oldnumberline}  
+\listoffigures%}
+\addcontentsline{toc}{chapter}{List of Figures} % Add List of figures into contents without any numeration 
+
+
+
+
+
+% -------------------  INTRODUCTION  ---------------------
+\chapter{Introduction}
+\input{Introduction} % Section/Chapter entries can be done in the Main.tex file or in a  
+                       % separate tex file for longer and more complex documents
+
+
+% -------------------  MATERIALS AND METHODS  ---------------------
+\chapter{Materials and Methods}
+\input{Materials and Methods} % Section/Chapter entries can be done in the Main.tex file or in a  
+                       % separate tex file for longer and more complex documents
+
+
+
+% -------------------  RESULTS  ---------------------
+\chapter{Results}
+\input{Results} % Section/Chapter entries can be done in the Main.tex file or in a  
+                       % separate tex file for longer and more complex documents
+
+% -------------------  DISCUSSION  ---------------------
+\chapter{Discussion}
+\input{Discussion} % Section/Chapter entries can be done in the Main.tex file or in a  
+                       % separate tex file for longer and more complex documents
+
+                       
+% -------------------  CONCLUSION AND FUTURE OUTLOOK  ---------------------
+\chapter{Conclusion and Future Outlook}
+\input{Conclusion and Future Outlook} % Section/Chapter entries can be done in the Main.tex file or in a  
+                       % separate tex file for longer and more complex documents                       
+% -------------------  BIBLIOGRAPHY ---------------------
+\newpage
+\bibliographystyle{elsarticle-num.bst}
+\bibliography{References}
+\addcontentsline{toc}{chapter}{References} % Adds References Section to Table of Contents
+% -------------------  Appendix  ---------------------
+\chapter*{Appendix}
+\addcontentsline{toc}{chapter}{Appendix}
+\input{Appendix} % Section/Chapter entries can be done in the Main.tex file or in a  
+                       % separate tex file for longer and more complex documents                       
+
+\end{document}
+%  -------------------------------------------------
+%  --------- The document ends from here ----------- 
+%  -------------------------------------------------
